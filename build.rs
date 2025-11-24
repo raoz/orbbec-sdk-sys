@@ -43,9 +43,6 @@ fn main() {
         // bindings for.
         .header(headers_path.to_str().unwrap())
         .clang_arg(format!("-I{}", libdir_path.join("include/").display()))
-        // Tell cargo to invalidate the built crate whenever any of the
-        // included header files changed.
-        .parse_callbacks(Box::new(bindgen::CargoCallbacks::new()))
         // Finish the builder and generate the bindings.
         .generate()
         // Unwrap the Result and panic on failure.
