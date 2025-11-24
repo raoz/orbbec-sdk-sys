@@ -16,3 +16,4 @@ exclude = ["vendor/docs", "vendor/EXAMPLES_C", "vendor/EXAMPLES_C++"]
 [build-dependencies]
 bindgen = "0.72.1"
 cmake = "0.1"
+fs_extra = "1.3.0"
