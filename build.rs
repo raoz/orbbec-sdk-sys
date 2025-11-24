@@ -9,7 +9,7 @@ fn main() {
     println!("cargo:rerun-if-changed=vendor/*");
     // Copy the vendor directory to OUT_DIR for building
     // This is necessary because cmake will generate some version info in the source tree
-    fs_extra::dir::copy("vendor/", &out_dir, &fs_extra::dir::CopyOptions::new())
+    fs_extra::dir::copy("vendor/", &out_dir, &fs_extra::dir::CopyOptions::new().overwrite(true))
         .expect("Failed to copy vendor directory");
 
     let libdir_path = out_dir
