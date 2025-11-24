@@ -1,0 +1,20 @@
+[package]
+name = "orbbec-sdk-sys"
+version = "2.5.5"
+edition = "2024"
+authors = ["Rao Zvorovski"]
+keywords = ["orbbec", "gemini", "astra", "femto", '3d', 'camera', 'rgbd']
+categories = ["external-ffi-bindings", "computer-vision"]
+links = "orbbec-sdk-2"
+description = "Low-level Rust bindings for https://github.com/orbbec/OrbbecSDK_v2"
+license = "MIT"
+repository = "https://github.com/raoz/orbbec-sdk-sys"
+exclude = ["vendor/docs", "vendor/EXAMPLES_C", "vendor/EXAMPLES_C++"]
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[dependencies]
+libc = "0.2"
+
+[build-dependencies]
+bindgen = "0.72.1"
+cmake = "0.1"
