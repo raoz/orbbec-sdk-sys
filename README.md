@@ -1,6 +1,6 @@
 # orbbec-sdk-sys
 
-This crate provides low-level bindings to [Orbbec SDK v2](https://github.com/orbbec/OrbbecSDK_v2), more specifically the C API. The library provides support for Orbbec RGBD and TOF cameras. The version numbers correspond to the version numbers of the underlying library.
+This crate provides low-level bindings to [Orbbec SDK v2](https://github.com/orbbec/OrbbecSDK_v2), more specifically the C API. The library provides support for Orbbec RGBD and TOF cameras. The version metadata (part after the plus) specified the version of Orbbec SDK.
 
 The crate builds the Orbbec SDK from source. Contributions to optionally link to the system installation instead are welcome.
 
