@@ -9,7 +9,7 @@ links = "orbbec-sdk-2"
 description = "Low-level Rust bindings for https://github.com/orbbec/OrbbecSDK_v2"
 license = "MIT"
 repository = "https://github.com/raoz/orbbec-sdk-sys"
-exclude = ["vendor/docs", "vendor/EXAMPLES_C", "vendor/EXAMPLES_C++"]
+exclude = ["vendor/docs", "vendor/examples"]
 
 [dependencies]
 

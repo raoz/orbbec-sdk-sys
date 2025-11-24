@@ -22,6 +22,7 @@ fn main() {
     let headers_path = libdir_path.join("include/libobsensor/ObSensor.h");
 
     let build_destination = Config::new(&libdir_path)
+        .define("OB_INSTALL_EXAMPLES_SOURCE", "OFF")
         .define("OB_BUILD_EXAMPLES", "OFF")
         .define("OB_BUILD_TESTS", "OFF")
         .define("OB_BUILD_DOCS", "OFF")
