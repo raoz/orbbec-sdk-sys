@@ -6,7 +6,6 @@ use std::sync::mpsc;
 use std::thread;
 use std::time::Instant;
 
-// Helper function to convert C pointers to Rust Strings
 unsafe fn from_c_str(ptr: *const std::os::raw::c_char) -> String {
     if ptr.is_null() {
         return String::from("(null)");
