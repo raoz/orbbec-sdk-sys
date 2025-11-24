@@ -7,7 +7,8 @@ fn main() {
     let out_dir = PathBuf::from(env::var("OUT_DIR").unwrap());
 
     println!("cargo:rerun-if-changed=vendor/*");
-    let _ = fs_extra::dir::remove(&out_dir.join("vendor"));
+    // Copy the vendor directory to OUT_DIR for building
+    // This is necessary because cmake will generate some version info in the source tree
     fs_extra::dir::copy("vendor/", &out_dir, &fs_extra::dir::CopyOptions::new())
         .expect("Failed to copy vendor directory");
 
@@ -48,6 +49,9 @@ fn main() {
         .generate()
         // Unwrap the Result and panic on failure.
         .expect("Unable to generate bindings");
+
+    // Clean up copied vendor directory
+    let _ = fs_extra::dir::remove(&out_dir.join("vendor"));
 
     // Write the bindings to the $OUT_DIR/bindings.rs file.
     let out_path = out_dir.join("bindings.rs");
