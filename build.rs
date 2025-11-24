@@ -22,9 +22,9 @@ fn main() {
 
     println!(
         "cargo:rustc-link-search=native={}",
-        build_destination.display()
+        build_destination.join("lib").display()
     );
-    println!("cargo:rustc-link-lib=OrbbecSDK");
+    println!("cargo:rustc-link-lib=dylib=OrbbecSDK");
     println!("cargo:rerun-if-changed={}", headers_path_str);
 
     // The bindgen::Builder is the main entry point
