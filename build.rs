@@ -9,8 +9,12 @@ fn main() {
     println!("cargo:rerun-if-changed=vendor/*");
     // Copy the vendor directory to OUT_DIR for building
     // This is necessary because cmake will generate some version info in the source tree
-    fs_extra::dir::copy("vendor/", &out_dir, &fs_extra::dir::CopyOptions::new().overwrite(true))
-        .expect("Failed to copy vendor directory");
+    fs_extra::dir::copy(
+        "vendor/",
+        &out_dir,
+        &fs_extra::dir::CopyOptions::new().overwrite(true),
+    )
+    .expect("Failed to copy vendor directory");
 
     let libdir_path = out_dir
         .join("vendor")
@@ -22,6 +26,9 @@ fn main() {
     let headers_path = libdir_path.join("include/libobsensor/ObSensor.h");
 
     let build_destination = Config::new(&libdir_path)
+        // The main CMakeLists already requires 3.5, but some children do not, this helps with compatibility with newer CMakes
+        .define("CMAKE_POLICY_VERSION_MINIMUM", "3.5")
+        // Disable building unnecessary components
         .define("OB_INSTALL_EXAMPLES_SOURCE", "OFF")
         .define("OB_BUILD_EXAMPLES", "OFF")
         .define("OB_BUILD_TESTS", "OFF")
