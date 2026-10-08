@@ -20,3 +20,26 @@ jobs:
          submodules: recursive
     - name: Build 
       run: cargo build --verbose
+
+  package:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+      with:
+         submodules: recursive
+    # `cargo package` also verifies the package by building the unpacked .crate
+    - name: Package
+      run: cargo package --verbose
+    - name: Check .crate size
+      run: |
+        f=$(ls target/package/*.crate)
+        size=$(stat -c %s "$f")
+        echo "$f: $size bytes"
+        echo "Packaged crate \`$(basename "$f")\`: $size bytes" >> "$GITHUB_STEP_SUMMARY"
+        # crates.io rejects crates larger than 10 MB
+        if [ "$size" -ge 10000000 ]; then
+          echo "::error::$f is $size bytes, which exceeds the crates.io 10 MB limit"
+          exit 1
+        fi
