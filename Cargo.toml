@@ -1,6 +1,6 @@
 [package]
 name = "orbbec-sdk-sys"
-version = "0.3.1+2.8.7"
+version = "0.3.2+2.9.3"
 edition = "2024"
 authors = ["Rao Zvorovski"]
 keywords = ["orbbec", "gemini", "astra", "femto", 'rgbd']
@@ -9,7 +9,23 @@ links = "orbbec-sdk-2"
 description = "Low-level Rust bindings for https://github.com/orbbec/OrbbecSDK_v2"
 license = "MIT"
 repository = "https://github.com/raoz/orbbec-sdk-sys"
-exclude = ["vendor/docs", "vendor/examples"]
+exclude = [
+    "vendor/docs",
+    "vendor/examples",
+    "vendor/tests",
+    "vendor/3rdparty/libjpeg/src/testimages",
+    "vendor/3rdparty/libjpeg/src/doc",
+    "vendor/3rdparty/libjpeg/src/java",
+    "vendor/3rdparty/libyuv/src/unit_test",
+    "vendor/3rdparty/libyuv/src/docs",
+    "vendor/3rdparty/live555/src/testProgs",
+    "vendor/3rdparty/jsoncpp/src/test",
+    "vendor/3rdparty/jsoncpp/src/doc",
+    "vendor/3rdparty/jsoncpp/src/example",
+    "vendor/3rdparty/libusb/src/examples",
+    "vendor/3rdparty/libusb/src/doc",
+    "vendor/3rdparty/libusb/src/tests",
+]
 
 [dependencies]
 
