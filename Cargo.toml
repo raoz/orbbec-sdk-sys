@@ -13,6 +13,7 @@ exclude = [
     "vendor/docs",
     "vendor/examples",
     "vendor/tests",
+    "vendor/3rdparty/googletest",
     "vendor/3rdparty/libjpeg/src/testimages",
     "vendor/3rdparty/libjpeg/src/doc",
     "vendor/3rdparty/libjpeg/src/java",
