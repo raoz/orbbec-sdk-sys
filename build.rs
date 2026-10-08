@@ -23,8 +23,6 @@ fn main() {
         .canonicalize()
         .expect("cannot canonicalize path");
 
-    let headers_path = libdir_path.join("include/libobsensor/ObSensor.h");
-
     let build_destination = Config::new(&libdir_path)
         // The main CMakeLists already requires 3.5, but some children do not, this helps with compatibility with newer CMakes
         .define("CMAKE_POLICY_VERSION_MINIMUM", "3.5")
@@ -42,6 +40,12 @@ fn main() {
     );
     println!("cargo:rustc-link-lib=dylib=OrbbecSDK");
 
+    // Generate bindings from the installed headers: since SDK v2.8.6 the public
+    // headers include `Export.h`, which CMake generates at build time and only
+    // installs alongside the other headers.
+    let include_path = build_destination.join("include");
+    let headers_path = include_path.join("libobsensor/ObSensor.h");
+
     // The bindgen::Builder is the main entry point
     // to bindgen, and lets you build up options for
     // the resulting bindings.
@@ -49,7 +53,7 @@ fn main() {
         // The input header we would like to generate
         // bindings for.
         .header(headers_path.to_str().unwrap())
-        .clang_arg(format!("-I{}", libdir_path.join("include/").display()))
+        .clang_arg(format!("-I{}", include_path.display()))
         // Finish the builder and generate the bindings.
         .generate()
         // Unwrap the Result and panic on failure.
